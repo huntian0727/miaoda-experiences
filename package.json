@@ -1,0 +1,7 @@
+{
+  "name": "miaoda-experiences",
+  "version": "0.2.1",
+  "private": true,
+  "engines": {"node": ">=22"},
+  "scripts": {"test": "node --test", "skill": "node skills/miaoda-delivery/scripts/miaoda.cjs"}
+}

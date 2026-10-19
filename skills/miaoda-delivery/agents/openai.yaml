@@ -1,0 +1,4 @@
+interface:
+  display_name: "妙搭开发交付与经验共享"
+  short_description: "通过本地 Git 和 CLI 核验妙搭开发交付，并共享脱敏经验记录"
+  default_prompt: "使用 $miaoda-delivery 检查当前妙搭项目的开发交付状态，核验预览版本，并检索相关经验。"

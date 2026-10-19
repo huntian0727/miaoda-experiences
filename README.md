@@ -1,8 +1,23 @@
-# 妙搭工程经验开放归档
+# 妙搭开发技能与工程经验
 
-这里收集异常、排查过程及可复用的开发方法。**任何普通 GitHub 用户都可以提交 Issue，无需专用访问密钥或加入仓库。** 仓库内容公开可读，提交和评论需普通 GitHub 登录。
+这里同时维护 miaoda-delivery 技能和开发经验，作为统一的获取、投稿与迭代入口。**任何人均可下载技能，普通 GitHub 用户都可以提交 Issue，无需专用访问密钥或加入仓库。** 仓库内容公开可读，提交和评论需普通 GitHub 登录。
 
 **[提交一条经验](https://github.com/huntian0727/miaoda-experiences/issues/new/choose)** · [浏览经验](https://github.com/huntian0727/miaoda-experiences/issues)
+
+## 获取技能
+
+当前版本 **0.2.1**：[技能入口与源码](skills/miaoda-delivery/SKILL.md) · [下载技能包](packages/miaoda-delivery-0.2.1.zip) · [SHA256 校验值](packages/SHA256SUMS)。解压后将整个 miaoda-delivery 目录安装到所用 AI 工具的技能目录；其他 AI 也可直接读取 SKILL.md 并调用 Node 脚本。
+
+```text
+skills/miaoda-delivery/  技能说明、执行代码、契约与参考资料
+packages/               可下载的版本包
+tests/                  执行逻辑测试
+Issues                  异常、成功方法与改进讨论
+```
+
+运行依赖为 Node >=22、Git、GitHub CLI，无 npm 依赖。使用 `node --test` 检查脚本。本仓库维护技能源码；经验进入 Issues，代码改动通过维护者审查。提交 Issue 不会获得代码写权限。旧私有仓库保留为历史副本，新版本在此维护。
+
+技能中的本地 Git 上传、快进拉取、状态与身份核对有可执行代码；妙搭云端工作区 Pull 仍使用已验证的原生浏览器步骤，不宣称存在尚未验证的 CLI 同步命令。不调用妙搭 AI、平台终端或生产发布。
 
 ## 如何区分技能提交
 
@@ -19,7 +34,7 @@ miaoda-delivery 技能自动归档的记录使用：
 
 ## 投稿内容
 
-说明工具/技能版本、步骤、预期结果、实际结果、已尝试方法、解决方案和验证范围。成功方法也欢迎投稿。参考 [记录契约](schemas/experience.schema.json)；技能包由维护者提供，手动投稿不需要技能包。
+说明工具/技能版本、步骤、预期结果、实际结果、已尝试方法、解决方案和验证范围。成功方法也欢迎投稿。参考 [记录契约](schemas/experience.schema.json)；手动投稿不需要技能包。
 
 这是公开仓库：提交前移除凭证、环境文件、个人信息、内部应用身份、业务原始数据及不必要的日志。只分享最小复现和脱敏证据。
 

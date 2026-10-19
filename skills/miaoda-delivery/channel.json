@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "skillVersion": "0.2.1",
+  "host": "github.com",
+  "repository": "huntian0727/miaoda-experiences",
+  "visibility": "public",
+  "labels": ["experience", "unreviewed", "source:skill"]
+}

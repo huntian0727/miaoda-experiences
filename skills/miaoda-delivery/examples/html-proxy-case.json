@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "kind": "technique",
+  "title": "开发核验接口被模板 HTML 代理截获",
+  "step": "identity",
+  "toolVersions": {"larkCli": "1.0.98", "node": "24.19.0"},
+  "summary": "客户端版本标记已更新，但普通浏览器访问开发核验 JSON 路径显示页面不存在。",
+  "expected": "浏览器 GET 核验路径返回应用身份与源码指纹。",
+  "actual": "Accept: text/html 的请求进入模板 HTML 代理，而默认请求头的本地 HTTP 检查正常。",
+  "attempts": [
+    {"action": "比较浏览器请求与本地 HTTP 请求的 Accept 头，并读取已安装模板代理实现", "result": "确认模板代理早于自定义核验中间件处理 HTML 请求"}
+  ],
+  "resolution": "核验 Vite 插件设 enforce: pre，在 HTML 代理前注册，并补测浏览器 Accept 头与应用前缀路径。",
+  "evidence": ["两轮不同前端 probe、云端 SHA 和源码指纹一致；必要项目查询正常；生产发布未改变。"],
+  "verification": {"state": "cloud-preview", "details": "一个 full_stack 应用的两轮实测；未验证其他模板、后端重启或长期多项目运行。"}
+}

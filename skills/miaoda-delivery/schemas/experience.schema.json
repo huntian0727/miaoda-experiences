@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Prepared engineering experience record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","id","createdAt","skillVersion","provenance","kind","title","step","toolVersions","summary","expected","actual","attempts","resolution","evidence","verification"],
+  "properties": {
+    "schemaVersion": {"const":1},
+    "id": {"type":"string","format":"uuid"},
+    "createdAt": {"type":"string","format":"date-time"},
+    "skillVersion": {"type":"string","minLength":1,"maxLength":50},
+    "provenance": {"type":"object","additionalProperties":false,"required":["source","method","markerVersion"],"properties":{"source":{"const":"miaoda-delivery"},"method":{"const":"skill-cli"},"markerVersion":{"const":1}}},
+    "kind": {"enum":["incident","technique"]},
+    "title": {"type":"string","minLength":1,"maxLength":120},
+    "step": {"enum":["preflight","git-upload","cloud-sync","identity","ui","backend","dependencies","other"]},
+    "toolVersions": {"type":"object","additionalProperties":false,"properties":{"node":{"type":"string","maxLength":100},"git":{"type":"string","maxLength":100},"larkCli":{"type":"string","maxLength":100},"miaodaCli":{"type":"string","maxLength":100},"template":{"type":"string","maxLength":100}}},
+    "summary": {"type":"string","minLength":1,"maxLength":3000},
+    "expected": {"type":"string","minLength":1,"maxLength":3000},
+    "actual": {"type":"string","minLength":1,"maxLength":3000},
+    "attempts": {"type":"array","maxItems":15,"items":{"type":"object","additionalProperties":false,"required":["action","result"],"properties":{"action":{"type":"string","minLength":1,"maxLength":1500},"result":{"type":"string","minLength":1,"maxLength":1500}}}},
+    "resolution": {"type":"string","maxLength":5000},
+    "evidence": {"type":"array","maxItems":10,"items":{"type":"string","minLength":1,"maxLength":2000}},
+    "verification": {"type":"object","additionalProperties":false,"required":["state","details"],"properties":{"state":{"enum":["not-tested","local","cloud-preview"]},"details":{"type":"string","minLength":1,"maxLength":3000}}}
+  }
+}
