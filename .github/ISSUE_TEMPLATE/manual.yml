@@ -1,0 +1,34 @@
+name: "手动经验归档"
+description: "任何 GitHub 用户都可提交脱敏异常、排查方法和成功经验。"
+title: "[manual] "
+labels: ["experience", "unreviewed", "source:manual"]
+body:
+  - type: markdown
+    attributes:
+      value: "本记录由网页手动提交。技能自动归档使用 [skill] 标题、正文来源标记和结构化版本信息。所有投稿均为待审查的公开参考。"
+  - type: input
+    id: versions
+    attributes:
+      label: "工具与技能版本"
+      description: "只填写必要版本，不填写内部应用或个人身份。"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "步骤、预期与实际结果"
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: "已尝试的方法、解决方案与验证范围"
+    validations:
+      required: true
+  - type: checkboxes
+    id: sharing
+    attributes:
+      label: "公开分享检查"
+      options:
+        - label: "已移除凭证、个人信息、内部应用身份与不必要的业务数据；了解本记录公开可读。"
+          required: true
