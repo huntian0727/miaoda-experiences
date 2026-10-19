@@ -40,7 +40,7 @@ test('CLI distinguishes cloud sync from local operations and rejects unrelated f
   assert.throws(()=>parse(['experience-search','--query','safe','--execute']),{code:'invalid_argument'});
   assert.throws(()=>parse(['fetch','--execute','--execute']),{code:'invalid_argument'});
   assert.throws(()=>parse(['fetch','--project']),{code:'invalid_argument'});
-  assert.equal(main(['help']).version,'0.2.1');
+  assert.equal(main(['help']).version,'0.3.0');
 });
 test('preparation redacts nested credentials, contacts and paths, then becomes idempotent',t=>{
   const dir=temporary(t);
@@ -121,7 +121,7 @@ test('outside contributor creates an identifiable skill Issue without label perm
   const result=lib.uploadRecord(prepared.record,{execute:true,reviewed:true,exec});
   assert.equal(result.labelsRequested,false);assert.ok(!Object.hasOwn(payload,'labels'));
   const summary=lib.summarizeIssue({number:2,title:payload.title,body:payload.body,labels:[],user:{login:'outside-user'}});
-  assert.equal(summary.submissionSource,'skill');assert.equal(summary.skillVersion,'0.2.1');
+  assert.equal(summary.submissionSource,'skill');assert.equal(summary.skillVersion,'0.3.0');
   assert.equal(summary.author,'outside-user');assert.equal(summary.sourceVerified,false);
 });
 test('source filtering uses body provenance even without labels, and never authenticates claims',t=>{

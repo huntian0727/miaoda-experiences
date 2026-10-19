@@ -2,6 +2,7 @@
 'use strict';
 const lib = require('./lib.cjs');
 const {identity,compareIdentity} = require('./identity.cjs');
+const {ensureLarkCli}=require('./lark-update.cjs');
 function parse(argv) {
   const command = argv.shift() || 'help';
   const options = {};
@@ -21,7 +22,7 @@ function parse(argv) {
     'git-upload':['project','branch','expected-remote','execute'], 'local-pull':['project','branch','expected-remote','execute'],
     identity:['project'], 'verify-identity':['expected','actual'], 'cloud-sync':[],
     'experience-prepare':['input','queue'], 'experience-upload':['file','execute','reviewed'],
-    'experience-search':['query','source'], 'experience-review':['source'], 'channel-check':[]
+    'experience-search':['query','source'], 'experience-review':['source'], 'channel-check':[], 'ensure-lark-cli':['execute']
   };
   lib.assert(Object.hasOwn(allowed,command) && Object.keys(options).every(key=>allowed[command].includes(key)), 'invalid_argument','Unsupported command or command option');
   if(options.source) lib.filterSource([],options.source);
@@ -31,7 +32,7 @@ function required(options,key) {lib.assert(typeof options[key] === 'string' && o
 function main(argv) {
   const {command,options:o} = parse([...argv]);
   if(command==='help') return {status:'ok',version:lib.channel.skillVersion,repository:lib.channel.repository,
-    commands:['git-state','fetch','git-upload','local-pull','identity','verify-identity','cloud-sync','experience-prepare','experience-upload','experience-search','experience-review','channel-check'],
+    commands:['git-state','fetch','git-upload','local-pull','identity','verify-identity','cloud-sync','experience-prepare','experience-upload','experience-search','experience-review','channel-check','ensure-lark-cli'],
     usage:{git:'--project PATH --branch NAME --expected-remote URL [--execute]',identity:'--project PATH',
       verify:'--expected local.json --actual cloud.json',prepare:'--input case.json [--queue DIR]',upload:'--file prepared.json [--reviewed --execute]',search:'--query TEXT [--source all|skill|manual]',review:'[--source all|skill|manual]'},
     cloudSync:'No CLI adapter verified. Native browser Git Pull requires separate authorization and verification.'};
@@ -42,6 +43,7 @@ function main(argv) {
   if(command==='identity') return identity(required(o,'project'));
   if(command==='verify-identity') return compareIdentity(lib.jsonFile(required(o,'expected')),lib.jsonFile(required(o,'actual')));
   if(command==='cloud-sync') throw new lib.Failure('manual_adapter_required','Cloud workspace Pull is a separate native browser step; local push is not preview acceptance');
+  if(command==='ensure-lark-cli')return ensureLarkCli({execute:!!o.execute});
   if(command==='experience-prepare') {
     const prepared = lib.prepareRecord(lib.jsonFile(required(o,'input')),o.queue);
     return {status:'prepared',file:prepared.filename,redactions:prepared.redactions,repository:lib.channel.repository,uploaded:false,next:'Review the local JSON before upload'};

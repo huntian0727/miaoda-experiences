@@ -1,4 +1,4 @@
-# 技能与开放经验归档（0.2.1）
+# 技能与开放经验归档（0.3.0）
 
 公开仓库：https://github.com/huntian0727/miaoda-experiences
 

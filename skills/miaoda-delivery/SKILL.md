@@ -2,14 +2,20 @@
 name: miaoda-delivery
 description: Develop and verify Feishu Miaoda applications using local Git/CLI, check cloud preview identity, and archive sanitized experience in the public GitHub channel with skill source markers. Use for Miaoda delivery, preview synchronization or experience sharing.
 metadata:
-  version: 0.2.1
+  version: 0.3.0
 ---
 
 # Miaoda development delivery
 
 Write and inspect code locally. Use official Feishu CLI and Git capabilities; never invoke Miaoda AI, conflict repair, platform terminals or private remote execution. User/project constraints take precedence. Development workspace sync, browser acceptance and production publication are separate outcomes. This skill does not publish production.
 
-Run `node <skill-directory>/scripts/miaoda.cjs help` for executable operations. Requires Node >=22, Git and GitHub CLI (`gh`); no package installation is required. Scripts return JSON. Nonzero exit means failure, not a partial pass. External writes are dry runs unless `--execute` is supplied; this flag is a mechanism, not user authorization.
+Run `node <skill-directory>/scripts/miaoda.cjs help` for executable operations. Requires Node >=22, Git, Feishu CLI and GitHub CLI (`gh`); no npm dependencies are required. Scripts return JSON. Nonzero exit means failure, not a partial pass. External writes are dry runs unless `--execute` is supplied; this flag is a mechanism, not user authorization.
+
+## Installation and CLI alignment
+
+Use `node <skill-directory>/scripts/install.cjs --execute` to install or upgrade; it checks the active official Feishu CLI update source, runs `lark-cli update --json` only when the CLI is behind or its official skills are out of sync, and verifies the active version again before replacing skill files. Existing skill files are kept in a full backup. See [installation.md](references/installation.md) for custom targets and failure handling.
+
+Generic skill managers and copying a ZIP do not universally execute installation hooks. When installing through another manager, run this installer as part of the installation request; on first use without an installation result, run `miaoda.cjs ensure-lark-cli` to check. Use `--execute` to update only within the user's installation/update authorization. Do not treat a copied folder as proof the CLI was checked. Missing CLI or unavailable/failed update checks stop verified installation; do not guess a download URL or force a downgrade.
 
 ## Delivery
 

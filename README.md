@@ -6,7 +6,7 @@
 
 ## 获取技能
 
-当前版本 **0.2.1**：[技能入口与源码](skills/miaoda-delivery/SKILL.md) · [下载技能包](packages/miaoda-delivery-0.2.1.zip) · [SHA256 校验值](packages/SHA256SUMS)。解压后将整个 miaoda-delivery 目录安装到所用 AI 工具的技能目录；其他 AI 也可直接读取 SKILL.md 并调用 Node 脚本。
+当前版本 **0.3.0**：[技能入口与源码](skills/miaoda-delivery/SKILL.md) · [下载技能包](packages/miaoda-delivery-0.3.0.zip) · [SHA256 校验值](packages/SHA256SUMS)。从仓库执行 `npm run install:skill`，或解压后执行 `node miaoda-delivery/scripts/install.cjs --execute`；安装时会检查并按需更新飞书 CLI，核验成功后才安装技能。其他 AI 工具通过 --target 指定技能父目录，详见[安装说明](skills/miaoda-delivery/references/installation.md)。
 
 ```text
 skills/miaoda-delivery/  技能说明、执行代码、契约与参考资料
@@ -15,7 +15,7 @@ tests/                  执行逻辑测试
 Issues                  异常、成功方法与改进讨论
 ```
 
-运行依赖为 Node >=22、Git、GitHub CLI，无 npm 依赖。使用 `node --test` 检查脚本。本仓库维护技能源码；经验进入 Issues，代码改动通过维护者审查。提交 Issue 不会获得代码写权限。旧私有仓库保留为历史副本，新版本在此维护。
+运行依赖为 Node >=22、Git、飞书 CLI、GitHub CLI，无 npm 依赖。安装器使用官方 `update --check --json` 与 `update --json`，不硬编码版本、不降级；网络或更新失败时不把安装报为成功。通用技能管理器或手动复制不一定执行代码，须将本仓库安装器纳入安装步骤。使用 `node --test` 检查脚本。本仓库维护技能源码；经验进入 Issues，代码改动通过维护者审查。提交 Issue 不会获得代码写权限。旧私有仓库保留为历史副本，新版本在此维护。
 
 技能中的本地 Git 上传、快进拉取、状态与身份核对有可执行代码；妙搭云端工作区 Pull 仍使用已验证的原生浏览器步骤，不宣称存在尚未验证的 CLI 同步命令。不调用妙搭 AI、平台终端或生产发布。
 
